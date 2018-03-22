@@ -3,7 +3,9 @@ import random
 
 deck = []
 players = {}
+playerNo = 0
 playerHand = [[]]
+round = ['tt','tS','SS','ttt','sss','ttS']
 
 class Card:
     """
@@ -23,6 +25,28 @@ def create_deck():
     dck = [Card(value, color) for value in range(1, 14) for color in colors]
     dck = dck + dck
     return dck
+
+def start_game():
+    order = range(0, playerNo)
+    turn = 0
+    finished = False
+    currentCard = deck.pop(0)
+
+    while not finished:
+        if turn == 0: # Player1's turn
+            print("Current card: " + currentCard.color + ", " + str(currentCard.value))
+            ans = raw_input("Pick this card or a random card off the deck? (T/R): ")
+            if ans == 'T':
+                playerHand[0].sort()
+                print("Choose a card to discard!")
+                for i in len(playerHand[0]):
+                    print(str(i) + ": " + currentCard.color + ", " + str(currentCard.value) + "\n")
+                choice = str(raw_input("Choice: "))
+
+                playerHand[0].pop(i+1) # Discard chosen card (+1 to fix off-by-one error)
+            Pick
+        else: # AI players' turns.
+
 
 def init_game():
     """
@@ -51,9 +75,9 @@ def init_game():
             playerHand[j].append(card) # ...and put it in a player's hand.
 
     print("Handing out cards...")
+    print("Lets play!")
 
-
-
+    start_game()
 
 
 if __name__ == "__main__":
